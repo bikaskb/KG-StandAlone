@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Printer Knowledge Graph</title>
+</head>
+<body>
+    <h2>Ask a Question about Printers</h2>
+    <form method="POST">
+        <label for="question">Your question:</label>
+        <input type="text" id="question" name="question" placeholder="e.g. Which printers support scanning?" required>
+        <input type="submit" value="Ask">
+    </form>
+
+    {% if cypher %}
+        <h4>Generated Cypher Query:</h4>
+        <pre>{{ cypher }}</pre>
+    {% endif %}
+
+    {% if results %}
+        <h4>Results:</h4>
+        <ul>
+            {% for row in results %}
+                <li>{{ row }}</li>
+            {% endfor %}
+        </ul>
+    {% elif question %}
+        <p>No results found for your query.</p>
+    {% endif %}
+</body>
+</html>
